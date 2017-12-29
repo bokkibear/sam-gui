@@ -1,18 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import NavBar from './NavBar';
+import PatientTimeline from './PatientTimeline';
+import PatientTimelineSidebar from './PatientTimelineSidebar';
+
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Sam's App Prototype</h1>
-        </header>
-      </div>
-    );
-  }
-}
+const VERTICAL_FLEX_STYLE = {
+  display: "flex",
+  flexDirection: "column",
+  height: "100%"
+};
 
-export default App;
+const HORIZONTAL_FLEX_STYLE = {
+  display: "flex",
+  flexDirection: "row"
+};
+
+const FLEX_FILL_STYLE = {
+  flex: "1 1 0"
+};
+
+const MAIN_SECTION_STYLE = Object.assign({}, HORIZONTAL_FLEX_STYLE, FLEX_FILL_STYLE );
+
+export default function App() {  
+  return (
+    <div className="App" style={ VERTICAL_FLEX_STYLE }>
+      <NavBar />
+      <div style={ MAIN_SECTION_STYLE }>
+        <PatientTimelineSidebar />
+        <PatientTimeline style={ FLEX_FILL_STYLE } patientId="12345" />
+      </div>
+    </div>
+  );
+}
