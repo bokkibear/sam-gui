@@ -13,7 +13,8 @@ const timeline = [{
     id: 12345,
     summary: "Clinical Notes",
     source: "Dr Sam",
-    timestamp: "2017-12-29T14:04:00"
+    timestamp: "2017-12-29T14:04:00",
+    detail: true
 },{
     id: 12346,
     summary: "Blood Pressure Reading 120/80",
@@ -23,7 +24,8 @@ const timeline = [{
     id: 12347,
     summary: "Nursing notes",
     source: "A. N. Urse",
-    timestamp: "2017-12-28T08:10:00"
+    timestamp: "2017-12-28T08:10:00",
+    detail: true
 }];
 
 const TIMELINE_ENTRY_STYLE = {
@@ -49,7 +51,7 @@ const BUTTON_STYLE = {
     color: "inherit"
 };
 
-function TimelineEntry( { timestamp, summary, source, id, onClick, isOpened } ) {
+function TimelineEntry( { timestamp, summary, source, id, onClick, isOpened, detail } ) {
     return (
         <li class="timeline-entry" style={ TIMELINE_ENTRY_STYLE } >
             <div style={ { flex: "1 1 0" } }>
@@ -62,9 +64,12 @@ function TimelineEntry( { timestamp, summary, source, id, onClick, isOpened } ) 
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </Collapse>
             </div>
-            <button style={ BUTTON_STYLE } onClick={ () => onClick( id ) }>
-                { isOpened ? "▲" : "▼" }
-            </button>
+            { 
+                detail ? 
+                    <button style={ BUTTON_STYLE } onClick={ () => onClick( id ) }>{ isOpened ? "▲" : "▼" }</button> : 
+                    false 
+            }
+           
         </li>
     );
 }
