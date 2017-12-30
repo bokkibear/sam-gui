@@ -11,9 +11,3 @@ body, html, #root {
   background-color: #224488;
   color: #fff;
 }
-
-.timeline-entry.is-opened,
-.timeline-entry.is-opened:hover {
-  background-color: #bbccff;
-  color: #000;
-}

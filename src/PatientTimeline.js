@@ -27,7 +27,8 @@ const timeline = [{
 }];
 
 const TIMELINE_ENTRY_STYLE = {
-    padding: "8px"
+    padding: "8px",
+    display: "flex"
 };
 
 const LIGHT_STYLE = {
@@ -37,31 +38,49 @@ const LIGHT_STYLE = {
     marginLeft: "16px"
 };
 
+const BUTTON_STYLE = { 
+    padding: "8px", 
+    height: "38px", 
+    border: "none", 
+    background: "transparent", 
+    cursor: "pointer",
+    fontSize: "120%",
+    fontWeight: "bold",
+    color: "inherit"
+};
+
 function TimelineEntry( { timestamp, summary, source, id, onClick, isOpened } ) {
-    const className = isOpened ? "timeline-entry is-opened" : "timeline-entry";
     return (
-        <li class={ className } style={ TIMELINE_ENTRY_STYLE } onClick={ () => onClick( id ) }>            
-            <h3 style={ { padding: 0, margin: "4px 0px" } }>
-                { summary }
-                <span style={ LIGHT_STYLE }>{ source }</span>
-            </h3>
-            <div style={ { fontSize: "80%" } }>{ moment( timestamp ).fromNow() }</div>
-            <Collapse isOpened={ isOpened }>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Collapse>
+        <li class="timeline-entry" style={ TIMELINE_ENTRY_STYLE } >
+            <div style={ { flex: "1 1 0" } }>
+                <h3 style={ { padding: 0, margin: "4px 0px" } }>
+                    { summary }
+                    <span style={ LIGHT_STYLE }>{ source }</span>
+                </h3>
+                <div style={ { fontSize: "80%" } }>{ moment( timestamp ).fromNow() }</div>
+                <Collapse isOpened={ isOpened }>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </Collapse>
+            </div>
+            <button style={ BUTTON_STYLE } onClick={ () => onClick( id ) }>
+                { isOpened ? "▲" : "▼" }
+            </button>
         </li>
     );
 }
 
 const PatientTimeline = createClass({
     getInitialState() {
-        return { openEntry: false };
+        return { openEntries: [] };
     },
     toggleEntryOpen( entryId ) {
         this.setState( ( previousState ) => {
-            const alreadyOpen = previousState.openEntry === entryId;
+            const { openEntries } = previousState;
+            const alreadyOpen = openEntries.includes( entryId );
             return {
-                openEntry: alreadyOpen ? false : entryId
+                openEntries: alreadyOpen ? 
+                    openEntries.filter( eachEntryId => eachEntryId !== entryId ) :
+                    [ ...openEntries, entryId ]
             };
         });
     },
@@ -73,7 +92,7 @@ const PatientTimeline = createClass({
                         timeline.map( timelineItem => 
                             <TimelineEntry 
                                 key={ timelineItem.id } 
-                                isOpened={ this.state.openEntry === timelineItem.id } 
+                                isOpened={ this.state.openEntries.includes( timelineItem.id ) } 
                                 onClick={ this.toggleEntryOpen } 
                                 { ...timelineItem } 
                             /> 
