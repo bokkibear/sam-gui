@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import PatientTimeline from './PatientTimeline';
 import PatientTimelineSidebar from './PatientTimelineSidebar';
 
+import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import './App.css';
 
 const VERTICAL_FLEX_STYLE = {

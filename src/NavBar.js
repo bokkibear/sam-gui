@@ -18,5 +18,5 @@ export default function NavBar() {
         <div style={ NAVBAR_STYLE }>
             <div style={ BRAND_STYLE }>Paradox</div>
         </div>
-    )
+    );
 }

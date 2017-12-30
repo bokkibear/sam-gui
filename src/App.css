@@ -1,6 +1,11 @@
 body, html, #root {
   height: 100%;
-  width: 100%
+  width: 100%;
+  font-family: Roboto;
+}
+
+.timeline-entry {
+  border-left: 8px solid transparent;
 }
 
 .timeline-entry:nth-child(even) {
@@ -9,5 +14,21 @@ body, html, #root {
 
 .timeline-entry:hover {
   background-color: #224488;
+  color: #fff;
+}
+
+.timeline-entry[data-alert="warning"] {
+  border-left: 8px solid #cc5500;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba( 240, 120, 0, 0.1 ),
+    rgba( 240, 120, 0, 0.1 ) 6px,
+    transparent 6px,
+    transparent 24px
+  );
+}
+
+.timeline-entry[data-alert="warning"]:hover {
+  background-color: #cc5500;
   color: #fff;
 }
