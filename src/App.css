@@ -6,3 +6,14 @@ body, html, #root {
 .timeline-entry:nth-child(even) {
   background-color: #eee;
 }
+
+.timeline-entry:hover {
+  background-color: #224488;
+  color: #fff;
+}
+
+.timeline-entry.is-opened,
+.timeline-entry.is-opened:hover {
+  background-color: #bbccff;
+  color: #000;
+}
