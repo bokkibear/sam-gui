@@ -7,7 +7,10 @@ import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 const storeReducer = combineReducers({
-    data: () => "initial state"
+    iconStyle: ( state = "small", action ) => {
+        if ( action.type === "UPDATE_ICON_STYLE" ) return action.iconStyle;
+        return state;
+    }
 });
 
 const store = createStore(storeReducer);
