@@ -1,5 +1,6 @@
 import React from 'react';
 import createClass from 'create-react-class';
+import { connect } from 'react-redux';
 import TimelineEntry from './TimelineEntry';
 
 const PLAIN_LIST_STYLE = {
@@ -8,40 +9,7 @@ const PLAIN_LIST_STYLE = {
     margin: 0
 };
 
-const timeline = [{
-    id: 12348,
-    summary: "BP reading 70/50 (dropped 45% in 20 hours)",
-    timestamp: "2017-12-30T10:10:00",
-    icon: "wfmi wfmi-cardiology",
-    alert: "warning"
-},{
-    id: 12345,
-    summary: "Clinical Notes",
-    source: "Dr Sam",
-    timestamp: "2017-12-29T14:04:00",
-    icon: "fa fa-file-text-o",
-    detail: true,
-    tags: [ "urgent action", "close monitoring", "deteriorating condition" ]
-},{
-    id: 12346,
-    summary: "BP reading 120/80",
-    source: "Blood Pressure machine 12aa312",
-    timestamp: "2017-12-29T12:25:00",
-    icon: "wfmi wfmi-cardiology"
-},{
-    id: 12347,
-    summary: "Nursing notes",
-    source: "A. N. Urse",
-    timestamp: "2017-12-28T08:10:00",
-    detail: true,
-    icon: "fa fa-file-text-o",
-    tags: [ "NTR", "patient asleep" ]
-},{
-    id: 12348,
-    summary: "Scheduled rapidevlol dosage (200mg) - final dosage",
-    timestamp: "2017-12-28T05:10:00",
-    icon: "wfmi wfmi-pharmacy"
-}];
+
 
 const PatientTimeline = createClass({
     getInitialState() {
@@ -59,8 +27,9 @@ const PatientTimeline = createClass({
         });
     },
     render() {
+        const { style, timeline } = this.props;
         return (
-            <div style={ this.props.style }>
+            <div style={ style }>
                 <ul style={ PLAIN_LIST_STYLE }>
                     { 
                         timeline.map( timelineItem => 
@@ -78,4 +47,8 @@ const PatientTimeline = createClass({
     }
 });
 
-export default PatientTimeline;
+function mapStateToProps( { timeline } ) {
+    return { timeline };
+}
+
+export default connect( mapStateToProps )( PatientTimeline );

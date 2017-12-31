@@ -6,6 +6,7 @@ body, html, #root {
 
 .timeline-entry {
   border-left: 8px solid transparent;
+  color: #555;
 }
 
 .timeline-entry:nth-child(even) {
@@ -26,6 +27,22 @@ body, html, #root {
     transparent 6px,
     transparent 24px
   );
+  color: #000;
+}
+
+.timeline-entry h3 {
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+.timeline-entry[data-alert="minor"] h3 {
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.timeline-entry[data-alert="warning"] h3 {
+  font-size: 22px;
 }
 
 .timeline-entry[data-alert="warning"]:hover {
