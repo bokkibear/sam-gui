@@ -2,6 +2,8 @@ import React from 'react';
 import createClass from 'create-react-class';
 import { connect } from 'react-redux';
 import TimelineEntry from './TimelineEntry';
+import NewClinicalNote from './NewClinicalNote';
+import PatientSummary from './PatientSummary';
 
 const PLAIN_LIST_STYLE = {
     listStyleType: "none",
@@ -30,6 +32,8 @@ const PatientTimeline = createClass({
         const { style, timeline } = this.props;
         return (
             <div style={ style }>
+                <PatientSummary />
+                <NewClinicalNote />
                 <ul style={ PLAIN_LIST_STYLE }>
                     { 
                         timeline.map( timelineItem => 

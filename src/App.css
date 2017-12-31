@@ -49,3 +49,27 @@ body, html, #root {
   background-color: #cc5500;
   color: #fff;
 }
+
+button.btn-plain {
+  background: none;
+  border: none;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+button.btn-cta {
+  background: #e4bc1d;
+  color: #444;
+  border: none;
+  font-family: inherit;  
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: inherit;
+  font-size: inherit;
+  padding: 6px;
+}
