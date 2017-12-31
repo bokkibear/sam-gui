@@ -12,13 +12,14 @@ const timeline = [{
     id: 12348,
     summary: "BP reading 70/50 (dropped 45% in 20 hours)",
     timestamp: "2017-12-30T10:10:00",
-    icon: "cardiology",
+    icon: "wfmi wfmi-cardiology",
     alert: "warning"
 },{
     id: 12345,
     summary: "Clinical Notes",
     source: "Dr Sam",
     timestamp: "2017-12-29T14:04:00",
+    icon: "fa fa-file-text-o",
     detail: true,
     tags: [ "urgent action", "close monitoring", "deteriorating condition" ]
 },{
@@ -26,19 +27,20 @@ const timeline = [{
     summary: "BP reading 120/80",
     source: "Blood Pressure machine 12aa312",
     timestamp: "2017-12-29T12:25:00",
-    icon: "cardiology"
+    icon: "wfmi wfmi-cardiology"
 },{
     id: 12347,
     summary: "Nursing notes",
     source: "A. N. Urse",
     timestamp: "2017-12-28T08:10:00",
     detail: true,
+    icon: "fa fa-file-text-o",
     tags: [ "NTR", "patient asleep" ]
 },{
     id: 12348,
     summary: "Scheduled rapidevlol dosage (200mg) - final dosage",
     timestamp: "2017-12-28T05:10:00",
-    icon: "pharmacy"
+    icon: "wfmi wfmi-pharmacy"
 }];
 
 const PatientTimeline = createClass({

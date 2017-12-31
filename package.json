@@ -5,6 +5,7 @@
   "dependencies": {
     "create-react-class": "^15.6.2",
     "eslint": "^4.12.1",
+    "font-awesome": "^4.7.0",
     "moment": "^2.20.1",
     "react": "^16.2.0",
     "react-collapse": "^4.0.3",

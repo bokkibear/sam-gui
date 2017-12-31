@@ -38,7 +38,7 @@ function TimelineEntry( { timestamp, summary, source, id, onClick, isOpened, det
             <div style={ { flex: "1 1 0" } }>                                
                 <h3 style={ { padding: 0, margin: "4px 0px", fontWeight: 500 } }>
                     { 
-                        iconStyle === "small" ? <MedicalIcon style={ { marginRight: "6px" } } icon={ icon } /> : false
+                        iconStyle === "small" ? <MedicalIcon style={ { marginRight: "6px", display: "inline-block", width: "24px" } } icon={ icon } /> : false
                     }
                     { summary }
                     <ul style={ { listStyleType: "none", display: "inline-block" } }>
