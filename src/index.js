@@ -90,12 +90,13 @@ const storeReducer = combineReducers({
     },
     timeline( state = INITIAL_TIMELINE_DATA, { type, clinicalNote } ) {
         if ( type === "ADD_CLINICAL_NOTE" ) {
-            const { text } = clinicalNote;
+            const { text, tags = [] } = clinicalNote;
             const newTimelineEntry = {
                 timestamp: moment().utc().format(),
                 source: "Dr Sam",
                 summary: "Clinical Notes",
                 detail: text,
+                tags,
                 icon: "fa fa-file-text-o",
                 id: moment().valueOf()
             };
