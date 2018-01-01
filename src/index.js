@@ -7,8 +7,8 @@ import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import moment from 'moment';
 
-const INITIAL_TIMELINE_DATA = [{
-    id: 12349,
+const INITIAL_TIMELINE_DATA = ff([{
+    id: 123499,
     summary: "BP reading 70/50 (dropped 45% in 20 hours)",
     timestamp: "2017-12-30T10:10:00",
     icon: "wfmi wfmi-cardiology",
@@ -42,7 +42,46 @@ const INITIAL_TIMELINE_DATA = [{
     timestamp: "2017-12-28T05:10:00",
     icon: "wfmi wfmi-pharmacy",
     alert: "minor"
-}];
+},{
+    id: 12349,
+    summary: "Patient admitted to Gollop ward",
+    timestamp: "2017-12-27T23:30:00",
+    icon: "fa fa-hospital-o"
+},{
+    id: 12311,
+    summary: "Clinical Notes",
+    source: "Dr Sam",
+    timestamp: "2017-12-27T20:04:00",
+    icon: "fa fa-file-text-o",
+    detail: "This man is somewhat poorly",
+    tags: [ "triage assessment" ]
+},{
+    id: 12312,
+    summary: "Patient enters A&E",    
+    timestamp: "2017-12-27T16:04:00",
+    icon: "fa fa-hospital-o"
+}]);
+
+function byTimeDescending( a, b ) {
+    return moment( b.timestamp ).diff( moment( a.timestamp ), "milliseconds" );
+}
+
+function toUnixTimestamp( iso8601timestamp ) {
+    return moment( iso8601timestamp ).valueOf();
+}
+
+function ff( timeline ) {
+    const now = moment();    
+    const mostRecentUnixTime = timeline.map( entry => entry.timestamp ).map( toUnixTimestamp ).sort().reverse()[0];
+    const dayDiff = now.diff( moment( mostRecentUnixTime ), "day" );
+    console.log( dayDiff );
+    return timeline.map( entry => {
+        const updatedTimestamp = moment( entry.timestamp ).add( dayDiff, "days" ).format();
+        return Object.assign( {}, entry, {
+            timestamp: updatedTimestamp
+        });
+    }).sort( byTimeDescending );
+}
 
 const storeReducer = combineReducers({
     iconStyle( state = "small", { type, iconStyle } ) {
