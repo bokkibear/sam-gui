@@ -73,3 +73,29 @@ button.btn-cta {
   font-size: inherit;
   padding: 6px;
 }
+
+button.btn-selected {
+  background: #224488;
+  color: #fff;
+  border: none;
+  font-family: inherit;  
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: inherit;
+  font-size: inherit;
+  padding: 6px;
+}
+
+button.btn-unselected {
+  background: #ccc;
+  color: #000;
+  border: none;
+  font-family: inherit;  
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: inherit;
+  font-size: inherit;
+  padding: 6px;
+}

@@ -11,7 +11,15 @@ const PLAIN_LIST_STYLE = {
     margin: 0
 };
 
-
+function filterTimeline( timeline, filters ) {
+    const anyFocus = Object.values( filters ).some( filterState => filterState === "focus" );
+    return timeline.filter( entry => {
+        const filterState = filters[ entry.type ];
+        if ( !filterState ) return !anyFocus;
+        if ( filterState === "hide" ) return false;
+        return true; //focus
+    });        
+}
 
 const PatientTimeline = createClass({
     getInitialState() {
@@ -29,14 +37,15 @@ const PatientTimeline = createClass({
         });
     },
     render() {
-        const { style, timeline } = this.props;
+        const { style, timeline, timelineFilters } = this.props;
+        const filteredTimeline = filterTimeline( timeline, timelineFilters );        
         return (
             <div style={ style }>
                 <PatientSummary />
-                <NewClinicalNote />
+                <NewClinicalNote />                
                 <ul style={ PLAIN_LIST_STYLE }>
                     { 
-                        timeline.map( timelineItem => 
+                        filteredTimeline.map( timelineItem => 
                             <TimelineEntry 
                                 key={ timelineItem.id } 
                                 isOpened={ this.state.openEntries.includes( timelineItem.id ) } 
@@ -45,14 +54,20 @@ const PatientTimeline = createClass({
                             /> 
                         ) 
                     }
+                    {   
+                        filteredTimeline.length === 0 ? 
+                            <li style={ { textAlign: "center" } }>No timeline entries are visible due to filtering</li>: false}
+                    <li style={ { padding: "4px 120px" } }>
+                        <button onClick={ () => alert("Does nothing") } className="btn-cta" style={ { width: "100%" } }>Show 2 previous admissions</button>
+                    </li>
                 </ul>
             </div>
         );
     }
 });
 
-function mapStateToProps( { timeline } ) {
-    return { timeline };
+function mapStateToProps( { timeline, timelineFilters } ) {
+    return { timeline, timelineFilters };
 }
 
 export default connect( mapStateToProps )( PatientTimeline );
