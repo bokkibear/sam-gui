@@ -14,6 +14,7 @@ function getNextUniqueId() {
 
 const INITIAL_TIMELINE_DATA = withIds( ff([{    
     summary: "BP reading 70/50 (dropped 45% in 20 hours)",
+    value: "70/50",
     timestamp: "2017-12-30T10:10:00",
     icon: "wfmi wfmi-cardiology",
     type: "BP reading",
@@ -28,6 +29,7 @@ const INITIAL_TIMELINE_DATA = withIds( ff([{
     tags: [ "urgent action", "close monitoring", "deteriorating condition" ]
 },{   
     summary: "BP reading 120/80",
+    value: "120/80",
     source: "Blood Pressure machine 12aa312",
     timestamp: "2017-12-29T12:25:00",
     icon: "wfmi wfmi-cardiology",
@@ -35,6 +37,7 @@ const INITIAL_TIMELINE_DATA = withIds( ff([{
     alert: "minor"
 },{      
     summary: "BP reading 124/81",
+    value: "124/81",
     source: "Blood Pressure machine 12aa312",
     timestamp: "2017-12-29T10:25:00",
     icon: "wfmi wfmi-cardiology",
@@ -42,6 +45,7 @@ const INITIAL_TIMELINE_DATA = withIds( ff([{
     alert: "minor"
 },{
     summary: "BP reading 124/81",
+    value: "124/81",
     source: "Blood Pressure machine 12aa312",
     timestamp: "2017-12-29T08:25:00",
     icon: "wfmi wfmi-cardiology",
@@ -49,6 +53,7 @@ const INITIAL_TIMELINE_DATA = withIds( ff([{
     alert: "minor"
 },{
     summary: "BP reading 125/85",
+    value: "125/85",
     source: "Blood Pressure machine 12aa312",
     timestamp: "2017-12-29T06:25:00",
     icon: "wfmi wfmi-cardiology",
@@ -89,7 +94,13 @@ const INITIAL_TIMELINE_DATA = withIds( ff([{
     type: "notes",
     tags: [ "triage assessment" ]
 },{   
-    summary: "Patient enters A&E",    
+    summary: "Patient attends ED pitstop",    
+    timestamp: "2017-12-27T16:33:00",
+    type: "admission/discharge",
+    icon: "fa fa-hospital-o",
+    alert: "minor"
+},{   
+    summary: "Patient enters A&E on foot",    
     timestamp: "2017-12-27T16:04:00",
     type: "admission/discharge",
     icon: "fa fa-hospital-o"
